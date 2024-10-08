@@ -98,16 +98,18 @@ public class BookMain {
 	
 	static void memberManage() {	//회원관리
 		System.out.println("관리자 메뉴입니다");
-//		// 선택6번 회원목록 출력
-//					case 6 :
-//							List<Member> list = mdao.memberList();
-//							System.out.println("---------------------------");
-//							System.out.println("회원목록");
-//							System.out.println("---------------------------");
-//							for(Member member : list) {
-//								System.out.println(member.toString());
-//							}
-//							break;
+		// 선택6번 회원목록 출력
+		MemberDao mdao = MemberDao.getInstance();
+		Member member = null;
+					
+		List<Member> list = mdao.memberList();
+		System.out.println("---------------------------");
+		System.out.println("회원목록");
+		System.out.println("---------------------------");
+		for(Member member1 : list) {
+		System.out.println(member1.toString());
+		}
+							
 	}
 
 }
