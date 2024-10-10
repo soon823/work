@@ -1,12 +1,20 @@
 package 개인프로젝트;
 
-public class Rog extends Dao {
+public class Rog {
 	
 	private String mid;
 	private String mpw;
 	private String mname;
 	private String tell;
 	private String responsibility;
+	
+	Rog(){}
+	Rog (String mid, String mpw, String mname, String tell){
+		this.mid = mid;
+		this.mpw = mpw;
+		this.mname = mname;
+		this.tell = tell;
+	}
 	
 	public String getMid() {
 		return mid;
@@ -42,10 +50,9 @@ public class Rog extends Dao {
 	
 	@Override
 	public String toString() {
-		return "Rog [mid=" + mid + ", mpw=" + mpw + ", mname=" + mname + ", tell=" + tell + ", responsibility="
+		return " [아이디=" + mid + ", 비밀번호=" + mpw + ", 이름=" + mname + ", 전화번호=" + tell + ", 권한="
 				+ responsibility + "]";
 	}
-	
 	
 	
 

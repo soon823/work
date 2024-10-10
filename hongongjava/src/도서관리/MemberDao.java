@@ -6,6 +6,8 @@ import java.util.List;
 
 // 목록(조회조건), 등록, 수정, 삭제, 단건.
 public class MemberDao extends DAO {
+	//Connection, getOpen, getClose 상속받음
+	
 	//싱글턴 방식
 	private static MemberDao instance = new MemberDao();
 	private MemberDao() {}
@@ -13,7 +15,6 @@ public class MemberDao extends DAO {
 		return instance;
 	}
 	
-	//Connection, getOpen, getClose 상속받음
 	
 	//아이디와 비밀번호 확인해서 true 반환 / false 반환.  --> 회원이름 반환  -->권한추가
 	Member checkMember(String id, String pw) {
