@@ -3,7 +3,7 @@ package 개인프로젝트;
 import java.util.List;
 import java.util.Scanner;
 
-public class ProjectMain {
+public class ProjectMain {a
 	
 	static Scanner sc = new Scanner(System.in);
 

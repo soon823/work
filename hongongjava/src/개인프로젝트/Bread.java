@@ -1,6 +1,6 @@
 package 개인프로젝트;
 
-public class Bread extends Dao {
+public class Bread extends Dao {a
 
 	private String bname;
 	private String stuff;

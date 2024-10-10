@@ -2,7 +2,7 @@ package 개인프로젝트;
 
 import java.sql.SQLException;
 
-public class JoinDao extends Dao {
+public class JoinDao extends Dao {a
 	
 	//회원가입
 	public int insert(Rog rog) {
