@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RogDao extends Dao {a
+public class RogDao extends Dao {
 	
 	private static RogDao instance = new RogDao();
 	private RogDao() {}
@@ -93,5 +93,51 @@ public class RogDao extends Dao {a
 		
 		getClose();
 		return 0;
-	}
-}
+	}//end delete
+	
+	//레시피삭제
+			public int delete(Bread bread, String bname) {
+				getOpen();
+				
+				String sql1 = ""
+							 +"select * from bread ";
+				
+				String sql = ""
+							+"delete "
+							+"from bread "
+							+"where bname = ? ";
+				try {
+					
+					pstm = conn.prepareStatement(sql1);
+					
+					rs = pstm.executeQuery();
+					while(rs.next()) {
+						bread.setBname(rs.getString("bname"));
+						bread.setStuff(rs.getString("stuff"));
+						bread.setRecipe(rs.getString("recipe"));
+						System.out.println(bread);
+					}				
+								
+					System.out.println(bread.getBname());
+					pstm = conn.prepareStatement(sql);
+					pstm.setString(1, bname);					
+					
+					int rows = pstm.executeUpdate();
+					
+					if(rows == 1) {
+						System.out.println("삭제");
+					}else {
+						System.out.println("다시확인");
+					}
+					
+					return rows;
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				getClose();
+				return 0;
+			}//end delete
+	
+}//end Class

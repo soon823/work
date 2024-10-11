@@ -1,6 +1,6 @@
 package 개인프로젝트;
 
-public class Rog {a
+public class Rog {
 	
 	private String mid;
 	private String mpw;

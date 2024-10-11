@@ -3,7 +3,7 @@ package 개인프로젝트;
 import java.util.List;
 import java.util.Scanner;
 
-public class ProjectMain {a
+public class ProjectMain {
 	
 	static Scanner sc = new Scanner(System.in);
 
@@ -19,6 +19,7 @@ public class ProjectMain {a
 		
 		while(run) {
 			
+
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.println("				Bakery_Recipe");
 			System.out.println("-------------------------------------------------------------------------------");
@@ -99,7 +100,13 @@ public class ProjectMain {a
 	//User 권한 게시판
 	static void recipeManage() {
 		
+		BreadDao bdao = BreadDao.instance();
+		Bread bread = null;
+		BreadInsert bi = null;
+		int cnt = 0;
 		int dcnt = 0;
+		String delPw = null;
+		
 		
 		while(true) {
 			System.out.println("-------------------------------------------------------------------------------");
@@ -112,22 +119,59 @@ public class ProjectMain {a
 			
 			switch(check) {
 			case 1 :
+					List<Bread> list = bdao.BreadList();
 					System.out.println("-------------------------------------------------------------------------------");
 					System.out.println("				[Bakery_Recipe]");
 					System.out.println("-------------------------------------------------------------------------------");
-					
+					for(Bread bd : list) {
+						System.out.println(bd.toString());
+					}
 					break;
-			case 2 :
+			case 2 :				
 					System.out.println("-------------------------------------------------------------------------------");
 					System.out.println("				[게시글 등록]");
 					System.out.println("-------------------------------------------------------------------------------");
+					System.out.print("게시글 비밀번호를 설정 해주세요 : ");
+					delPw = sc.nextLine();
+					System.out.print("이름 : ");
+					String bname = sc.nextLine();
+					System.out.print("재료 : ");
+					String stuff = sc.nextLine();
+					System.out.println("(만드는법 입력 종료는 esc 입력 엔터)");
+					System.out.print("만드는법 : ");
+					String recipe = " ";
+					while(true) {
+						String a = sc.nextLine();
+						if(a.equals("esc")) {
+							break;
+						}
+						recipe += a + "\n";
+					}
 					
-					break;
+					Bread bd = new Bread(bname, stuff, recipe);
+					bi = new BreadInsert();
+					cnt = bi.insert(bd);
+					
+					break;			
 			case 3 :
 					System.out.println("-------------------------------------------------------------------------------");
 					System.out.println("				[게시글 삭제]");
 					System.out.println("-------------------------------------------------------------------------------");
-					
+					System.out.print("게시글 비밀번호를 적어주세요 : ");
+					String dp = sc.nextLine();
+					if(dp.equals(delPw)) {
+						System.out.print("삭제할 게시글의 이름을 적어 주세요 : ");
+						String name = sc.nextLine();
+						bread = new Bread();
+						if(bdao.delete(name) == 1) {							
+							System.out.println(name + " 게시글을 삭제 하였습니다.");
+							delPw = null;
+						}else {
+							System.out.println("없는 게시글입니다 이름을 다시 확인하세요.");
+						}	
+					}else {
+						System.out.println("비밀번호를 다시 확인 해주세요.");
+					}
 					break;
 			case 4 : System.out.println("로그아웃 하였습니다."); return;
 			default : 
@@ -142,8 +186,10 @@ public class ProjectMain {a
 					if(dcnt == 8) {System.out.println("1~4!");}
 					if(dcnt == 9) {System.out.println("아 안해 듣지마");}
 					if(dcnt > 9 & dcnt < 20) {System.out.println("1-4");}
-					if(dcnt == 20) {System.out.println("제정신이냐? 내가 포기한다.");}
-					if(dcnt > 20) {System.out.println("1번부터 4번 사이에 번호를 제대로 눌러 주세요.");}
+					if(dcnt == 20) {System.out.println("이걸 본다고?");}
+					if(dcnt == 21) {System.out.println("제정신이냐? 내가 포기한다.");}
+					if(dcnt > 21) {System.out.println("1번부터 4번 사이에 번호를 제대로 눌러 주세요.");}
+					
 					
 					break;					
 			}//end switch
@@ -156,6 +202,7 @@ public class ProjectMain {a
 	//Admin 권한 회원관리
 	static void memberManage() {
 		
+		Bread bread;
 		RogDao rdao = RogDao.getInstance();
 		Rog rog = null;
 		
@@ -163,7 +210,7 @@ public class ProjectMain {a
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.println("				[관리자 메뉴]");
 			System.out.println("-------------------------------------------------------------------------------");
-			System.out.println("		1.회원조회	2.회원추방	3.로그아웃");
+			System.out.println("	1.회원조회	2.회원추방	3.게시글삭제	4.로그아웃");
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.print(" 선택 >> ");
 			int check = Integer.parseInt(sc.nextLine());
@@ -194,7 +241,17 @@ public class ProjectMain {a
 					}
 
 					break;
-			case 3 :System.out.println("메인으로 돌아갑니다."); return;
+			case 3 :
+					System.out.println("-------------------------------------------------------------------------------");
+					System.out.println("				[게시글 삭제]");
+					System.out.println("-------------------------------------------------------------------------------");
+					System.out.print("삭제할 게시글 이름 : ");
+					String bname = sc.nextLine();
+					bread = new Bread();
+					rdao.delete(bread,bname);
+
+					break;
+			case 4 :System.out.println("메인으로 돌아갑니다."); return;
 			
 			default : System.out.println("다시 선택!"); break;
 			}//end switch
@@ -202,5 +259,7 @@ public class ProjectMain {a
 		}//end while
 		
 	}//end memberManage
+	
+	
 
 }//end class

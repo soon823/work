@@ -1,10 +1,17 @@
 package 개인프로젝트;
 
-public class Bread extends Dao {a
+public class Bread extends Dao {
 
 	private String bname;
 	private String stuff;
 	private String recipe;
+	
+	Bread(){}
+	Bread (String bname, String stuff, String recipe){
+		this.bname = bname;
+		this.stuff = stuff;
+		this.recipe = recipe;
+	}
 	
 	public String getBname() {
 		return bname;
@@ -27,7 +34,7 @@ public class Bread extends Dao {a
 	
 	@Override
 	public String toString() {
-		return "Bread [bname=" + bname + ", stuff=" + stuff + ", recipe=" + recipe + "]";
+		return "이름 = " + bname + "\n재료 = " + stuff + "\n만드는법 =" + recipe;
 	}
 	
 	
