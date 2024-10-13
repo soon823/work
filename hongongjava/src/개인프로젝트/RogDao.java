@@ -73,18 +73,42 @@ public class RogDao extends Dao {
 	}//end RogList
 	
 	//회원삭제
-	public int delete(Rog rog) {
+	public int delete(Rog rog, String rname) {
 		getOpen();
+		
+		String sql1 = ""
+					+"select * from rog ";
 		
 		String sql = ""
 					+"delete "
 					+"from rog "
 					+"where mname = ? ";
+		
+		
 		try {
+			pstm = conn.prepareStatement(sql1);
+			
+			rs = pstm.executeQuery();
+			while(rs.next()) {
+				rog.setMid(rs.getString("mid"));
+				rog.setMpw(rs.getString("mpw"));
+				rog.setMname(rs.getString("mname"));
+				rog.setTell(rs.getString("tell"));
+//			System.out.println(bread);
+			}
+			
+			
 			pstm = conn.prepareStatement(sql);
-			pstm.setString(1, rog.getMname());
+			pstm.setString(1, rname);
 			
 			int rows = pstm.executeUpdate();
+			
+			if(rows == 1) {
+				System.out.println(rname + " 추방 하였습니다.");
+			}else {
+				System.out.println("이름을 다시 확인해주세요.");
+			}
+			
 			return rows;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -115,19 +139,18 @@ public class RogDao extends Dao {
 						bread.setBname(rs.getString("bname"));
 						bread.setStuff(rs.getString("stuff"));
 						bread.setRecipe(rs.getString("recipe"));
-						System.out.println(bread);
+//						System.out.println(bread);
 					}				
 								
-					System.out.println(bread.getBname());
 					pstm = conn.prepareStatement(sql);
 					pstm.setString(1, bname);					
 					
 					int rows = pstm.executeUpdate();
 					
 					if(rows == 1) {
-						System.out.println("삭제");
+						System.out.println("게시글을 삭제 하였습니다.");
 					}else {
-						System.out.println("다시확인");
+						System.out.println("다시 확인해주세요");
 					}
 					
 					return rows;

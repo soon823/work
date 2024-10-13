@@ -23,7 +23,7 @@ public class ProjectMain {
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.println("				Bakery_Recipe");
 			System.out.println("-------------------------------------------------------------------------------");
-			System.out.println("		1.로그인		2.회원가입	3.나가기");
+			System.out.println("		1.로그인		2.회원가입		3.나가기");
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.print("로그인 후 사용 가능합니다.(비회원 일시 회원가입하여 주세요)	| 선택 >> ");
 			int check = Integer.parseInt(sc.nextLine());
@@ -76,7 +76,7 @@ public class ProjectMain {
 					String mpw = sc.nextLine();
 					System.out.print("이름을 적어주세요. : ");
 					String mname = sc.nextLine();
-					System.out.print("전화번호를 적어주세요. ex)010-000-0000 : ");
+					System.out.print("전화번호를 적어주세요. ex)010-0000-0000 : ");
 					String tell = sc.nextLine();
 					
 					Rog rg = new Rog(mid, mpw, mname, tell);
@@ -210,7 +210,7 @@ public class ProjectMain {
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.println("				[관리자 메뉴]");
 			System.out.println("-------------------------------------------------------------------------------");
-			System.out.println("	1.회원조회	2.회원추방	3.게시글삭제	4.로그아웃");
+			System.out.println("	1.회원조회		2.회원추방		3.게시글삭제	4.로그아웃");
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.print(" 선택 >> ");
 			int check = Integer.parseInt(sc.nextLine());
@@ -230,15 +230,9 @@ public class ProjectMain {
 					System.out.println("			[추방할 회원에 이름을 적어주세요.]");
 					System.out.println("-------------------------------------------------------------------------------");
 					System.out.print("이름 : ");
-					String name = sc.nextLine();
+					String rname = sc.nextLine();
 					rog = new Rog();
-					rog.setMname(name);
-					if(rog.getMname().equals(name)) {
-						rdao.delete(rog);
-						System.out.println(name + " 쫓아냈습니다.");
-					}else {
-						System.out.println("이름을 다시 확인하세요.");
-					}
+					rdao.delete(rog,rname);
 
 					break;
 			case 3 :
