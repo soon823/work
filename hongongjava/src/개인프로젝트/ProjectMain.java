@@ -16,14 +16,13 @@ public class ProjectMain {
 		int rogincnt = 0;
 		
 		boolean run = true;
-		
-		while(run) {
+				while(run) {
 			
 
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.println("				Bakery_Recipe");
 			System.out.println("-------------------------------------------------------------------------------");
-			System.out.println("		1.로그인		2.회원가입		3.나가기");
+			System.out.println("		1.로그인		2.회원가입	 3.나가기");
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.print("로그인 후 사용 가능합니다.(비회원 일시 회원가입하여 주세요)	| 선택 >> ");
 			int check = Integer.parseInt(sc.nextLine());
@@ -112,7 +111,7 @@ public class ProjectMain {
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.println("				[Recipe게시판]");
 			System.out.println("-------------------------------------------------------------------------------");
-			System.out.println("	 1.게시글조회	 2.게시글등록	 3.게시글삭제	 4.로그아웃");
+			System.out.println(" 1.게시글조회	2.게시글등록	3.게시글삭제	4.회원정보수정	5.로그아웃");
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.print(" 선택 >> ");
 			int check = Integer.parseInt(sc.nextLine());
@@ -173,7 +172,41 @@ public class ProjectMain {
 						System.out.println("비밀번호를 다시 확인 해주세요.");
 					}
 					break;
-			case 4 : System.out.println("로그아웃 하였습니다."); return;
+			case 4 :
+					System.out.println("-------------------------------------------------------------------------------");
+					System.out.println("				[회원정보수정]");
+					System.out.println("-------------------------------------------------------------------------------");
+					System.out.print("아이디를 입력 : ");
+					String mid = sc.nextLine();
+					System.out.print("수정할 이름 : ");
+					String mname = sc.nextLine();
+					System.out.print("수정할 전화번호 : ");
+					String tell = sc.nextLine();
+					System.out.print("수정할 비밀번호 : ");
+					String mpw = sc.nextLine();
+					
+					Rog rog = new Rog();
+					rog.setMid(mid);
+					rog.setMname(mname);
+					rog.setTell(tell);
+					rog.setMpw(mpw);
+					
+					RogDao rdao = new RogDao();
+					int rcnt = 0;
+					rcnt = rdao.update(rog);
+					
+					if(rcnt == 0) {
+						System.out.println();
+						System.out.println("수정 실패(아이디를 확인 해주세요)");
+					}else {
+						System.out.println();
+						System.out.println("수정 완료");
+					}
+					
+					break;
+			case 5 :System.out.println(); 
+					System.out.println("로그아웃 하였습니다.");
+					return;
 			default : 
 					dcnt ++;
 					if(dcnt == 1) {System.out.println("1번부터 4번 사이에 번호를 제대로 눌러 주세요.");}
@@ -210,7 +243,7 @@ public class ProjectMain {
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.println("				[관리자 메뉴]");
 			System.out.println("-------------------------------------------------------------------------------");
-			System.out.println("	1.회원조회		2.회원추방		3.게시글삭제	4.로그아웃");
+			System.out.println("	1.회원조회	2.회원추방	3.게시글삭제	4.로그아웃");
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.print(" 선택 >> ");
 			int check = Integer.parseInt(sc.nextLine());
@@ -245,7 +278,9 @@ public class ProjectMain {
 					rdao.delete(bread,bname);
 
 					break;
-			case 4 :System.out.println("메인으로 돌아갑니다."); return;
+			case 4 :System.out.println();
+					System.out.println("메인으로 돌아갑니다.");
+					return;
 			
 			default : System.out.println("다시 선택!"); break;
 			}//end switch

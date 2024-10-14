@@ -7,7 +7,7 @@ import java.util.List;
 public class RogDao extends Dao {
 	
 	private static RogDao instance = new RogDao();
-	private RogDao() {}
+	RogDao() {}
 	public static RogDao getInstance() {
 		return instance;
 	}
@@ -118,6 +118,35 @@ public class RogDao extends Dao {
 		getClose();
 		return 0;
 	}//end delete
+	
+	public int update(Rog rog) {
+		getOpen();
+		
+		String sql = ""
+					+"update rog "
+					+"set mname=?, tell=?, mpw=? "
+					+"where mid=?";
+		
+		try {
+			pstm = conn.prepareStatement(sql);
+			
+			pstm.setString(1, rog.getMname());
+			pstm.setString(2, rog.getTell());
+			pstm.setString(3, rog.getMpw());
+			pstm.setString(4, rog.getMid());
+			
+			int rcnt = pstm.executeUpdate();
+			
+			return rcnt;
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		getClose();
+		return 0;
+	}//end update
 	
 	//레시피삭제
 			public int delete(Bread bread, String bname) {
