@@ -9,4 +9,54 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>MemberAddServlet</display-name>
+    <servlet-name>MemberAddServlet</servlet-name>
+    <servlet-class>com.yedam.web.MemberAddServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberAddServlet</servlet-name>
+    <url-pattern>/MemberAddServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MemberADDServlet</display-name>
+    <servlet-name>MemberADDServlet</servlet-name>
+    <servlet-class>com.yedam.web.MemberADDServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberADDServlet</servlet-name>
+    <url-pattern>/MemberADDServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MemberAddservlet</display-name>
+    <servlet-name>MemberAddservlet</servlet-name>
+    <servlet-class>com.yedam.web.MemberAddservlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberAddservlet</servlet-name>
+    <url-pattern>/MemberAddservlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>memberAddServlet</display-name>
+    <servlet-name>memberAddServlet</servlet-name>
+    <servlet-class>com.yedam.web.memberAddServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>memberAddServlet</servlet-name>
+    <url-pattern>/memberAddServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MemberAddServlet1</display-name>
+    <servlet-name>MemberAddServlet1</servlet-name>
+    <servlet-class>com.yedam.web.MemberAddServlet1</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberAddServlet1</servlet-name>
+    <url-pattern>/MemberAddServlet1</url-pattern>
+  </servlet-mapping>
 </web-app>
