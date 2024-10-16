@@ -12,27 +12,38 @@
   <!-- valuse 값은 MemberVO에있는 필드명 -->
   <!-- parameterType = 외부에서오는 값 타입 -->
   <insert id="insertMember" parameterType="com.yedam.vo.Member">
-  	insert into tbl_member (member_id, member_name, password, phone)
-  	values(#{memberId}, #{memberName}, #{password}, #{phone})
+     insert into tbl_member (member_id, member_name, password, phone)
+     values(#{memberId}, #{memberName}, #{password}, #{phone})
   </insert>
   
   <update id="updateMember" parameterType="com.yedam.vo.Member">
-	update tbl_member set creation_date = creation_date
-	<if test="memberName != null">
-	 ,member_name = #{memberName}
-	</if>
-	<if test="phone != null">
-	 ,phone = #{phone} 
-	</if>
-	<if test="password != null">
-	 ,password = #{password} 
-	</if>
-	where member_id=#{memberId}
+   update tbl_member set creation_date = creation_date
+   <if test="memberName != null">
+    ,member_name = #{memberName}
+   </if>
+   <if test="phone != null">
+    ,phone = #{phone} 
+   </if>
+   <if test="password != null">
+    ,password = #{password} 
+   </if>
+   where member_id=#{memberId}
   </update>
   
   <delete id="deleteMember" parameterType="String">
-  	delete from tbl_member
-  	where member_id = #{memberId}
+     delete from tbl_member
+     where member_id = #{memberId}
   </delete>
+  
+  <select id="selectMember" parameterType="String" resultType="com.yedam.vo.Member">
+     select member_id
+          ,member_name
+          ,password
+          ,phone
+          ,responsibility
+          ,creation_date
+     from tbl_member
+     where member_id = #{memberId}
+  </select>
   
 </mapper>

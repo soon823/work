@@ -13,4 +13,6 @@ public interface MemberMapper {
 	public int updateMember(Member member);
 	public int deleteMember(String memberId);
 	
+	public Member selectMember(String memberId);//단건조회
+	
 }
