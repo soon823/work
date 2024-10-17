@@ -108,7 +108,7 @@
 				<Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
 				
-				<Context docBase="mybatis3" path="/mybatis3" reloadable="true" source="org.eclipse.jst.jee.server:mybatis3"/>
+				
 			<Context docBase="FreeBoard" path="/FreeBoard" reloadable="true" source="org.eclipse.jst.jee.server:FreeBoard"/></Host>
 		</Engine>
 	</Service>
